@@ -1,4 +1,9 @@
 import pkg from "../package.json";
+import preStartup from './preStartup';
+import mutations from "./mutations/index.js";
+import queries from "./queries/index.js";
+import resolvers from "./resolvers/index.js";
+import schemas from "./schemas/index.js";
 
 /**
  * @summary Import and call this function to add this plugin to your API.
@@ -7,8 +12,17 @@ import pkg from "../package.json";
  */
 export default async function register(app) {
   await app.registerPlugin({
-    label: "Plugin Example",
-    name: "plugin-example",
-    version: pkg.version
+    label: "Sub Tag",
+    name: "subTag",
+    version: pkg.version,
+    graphQL: {
+      // resolvers,
+      schemas
+    },
+    // mutations,
+    // queries,
+    // functionsByType: {
+    //   preStartup: [preStartup],
+    // },
   });
 }
