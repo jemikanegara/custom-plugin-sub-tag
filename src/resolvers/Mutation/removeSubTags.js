@@ -8,7 +8,7 @@ const inputSchema = new SimpleSchema({
 })
 
 /**
- * @name Mutation.addSubTags
+ * @name Mutation.removeSubTags
  * @method
  * @memberof Routes/GraphQL
  * @summary Update a specified redirect rule
@@ -18,7 +18,7 @@ const inputSchema = new SimpleSchema({
  * @param {Object} context - an object containing the per-request state
  * @returns {Promise<Object>} ModifySubTagPayload
  */
-export default async function addSubTags(parentResult, { input }, context) {
+export default async function removeSubTags(parentResult, { input }, context) {
   const { appEvents, collections } = context;
   const { Tags } = collections;
   const {
@@ -43,8 +43,8 @@ export default async function addSubTags(parentResult, { input }, context) {
   try {
     const { result } = await Tags.updateOne(
       { _id: tagId, shopId },
-      { $addToSet : {
-          relatedTagIds: { $each: subTagIds }
+      { $pullAll : {
+          relatedTagIds: subTagIds
         }
       }
     );

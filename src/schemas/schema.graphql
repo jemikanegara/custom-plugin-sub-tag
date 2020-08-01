@@ -1,44 +1,37 @@
-# "Describes the input for add sub tags into a tag"
-# input AddSubTagInput {
-#   "An optional string identifying the mutation call, which will be returned in the response payload"
-#   clientMutationId: String
+"Describes the input for add sub tags into a tag"
+input ModifySubTagInput {
+  "An optional string identifying the mutation call, which will be returned in the response payload"
+  clientMutationId: String
 
-#   "The tag ID"
-#   tagId: ID!
+  "ID of rule to modify"
+  id: ID!
 
-#   "The tag IDs that will be sub tags of tag"
-#   subTagIDs: [ID!]!
+  "The tag ID that will be sub tags of tag"
+  subTagIds: [ID!]!
 
-#   "Shop ID"
-#   shopId: ID!  
-# }
-
-# "Response payload for `addSubTags` mutation"
-# type AddTagPayload {
-#   "The same string you sent with the mutation params, for matching mutation calls with their responses"
-#   clientMutationId: String
-
-#   "The shop that owns the tag"
-#   shopId: ID!
-
-#   "The newly-created tag"
-#   tag: Tag!
-# }
-
-# extend type Mutation {
-#   "Add sub tags"
-#   addSubTags(
-#     "Sub tags input"
-#     input: AddSubTagInput
-#   )
-# }
-
-extend input AddTagInput{
-  "Add sub tags"
-  relatedTagIds: [ID]
+  "Shop ID"
+  shopId: ID!  
 }
 
-extend input UpdateTagInput {
+"Response payload for `addSubTags` mutation"
+type ModifySubTagPayload {
+  "The same string you sent with the mutation params, for matching mutation calls with their responses"
+  clientMutationId: String
+
+  "The updated tag"
+  tag: Tag!
+}
+
+extend type Mutation {
   "Add sub tags"
-  relatedTagIds: [ID]
+  addSubTags(
+    "Sub tags input"
+    input: ModifySubTagInput
+  ): ModifySubTagPayload!
+
+  "Remove sub tags"
+  removeSubTags(
+    "Sub tags input"
+    input: ModifySubTagInput
+  ): ModifySubTagPayload!
 }

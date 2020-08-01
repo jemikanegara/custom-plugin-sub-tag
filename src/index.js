@@ -1,7 +1,4 @@
 import pkg from "../package.json";
-import preStartup from './preStartup';
-import mutations from "./mutations/index.js";
-import queries from "./queries/index.js";
 import resolvers from "./resolvers/index.js";
 import schemas from "./schemas/index.js";
 
@@ -16,13 +13,8 @@ export default async function register(app) {
     name: "subTag",
     version: pkg.version,
     graphQL: {
-      // resolvers,
+      resolvers,
       schemas
     },
-    // mutations,
-    // queries,
-    // functionsByType: {
-    //   preStartup: [preStartup],
-    // },
   });
 }
