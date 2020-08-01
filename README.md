@@ -1,3 +1,43 @@
+# GraphQL Queries Example
+
+```
+mutation addSubTags($id: ID!, $shopId: ID!, subTagIds: [ID!]!) {
+  addSubTags(input: {
+    id: $id
+    subTagIds: $subTagIds
+    shopId: $shopId
+  }){
+    tag{
+      _id
+      name
+      subTags{
+        nodes{
+          name
+        }
+      }
+    }
+  }
+}
+
+mutation removeSubTags($id: ID!, $shopId: ID!, subTagIds: [ID!]!) {
+  removeSubTags(input: {
+    id: $id
+    subTagIds: $subTagIds
+    shopId: $shopId
+  }){
+    tag{
+      _id
+      name
+      subTags{
+        nodes{
+          name
+        }
+      }
+    }
+  }
+}
+```
+
 # api-plugin-example
 
 [![npm (scoped)](https://img.shields.io/npm/v/@reactioncommerce/api-plugin-example.svg)](https://www.npmjs.com/package/@reactioncommerce/api-plugin-example)
