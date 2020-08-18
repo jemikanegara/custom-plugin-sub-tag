@@ -22,6 +22,10 @@ type ModifySubTagPayload {
   tag: Tag!
 }
 
+extend type Tag {
+  shopId: ID!
+}
+
 extend type Mutation {
   "Add sub tags"
   addSubTags(
